@@ -1,0 +1,38 @@
+<div class="panel panel-success">
+  <div class="panel-heading">User Registration</div>
+  <div class="panel-body">
+    
+    <form [formGroup]="rForm" (ngSubmit)="addUserRegistration(rForm.value)" class="form-horizontal">
+      <div id="flash" class="form-group">
+        <label class="col-sm-3 control-label"></label>
+        <div class="col-sm-4">
+          <label *ngIf="error" style="color:red">{{error}}</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Username</label>
+        <div class="col-sm-4">
+          <input type="text" name="username" class="form-control" formControlName="username" [(ngModel)]="registerData.username" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Email</label>
+        <div class="col-sm-4">
+          <input type="text" name="email" (blur)="checkMailFormat($event.target.value);" class="form-control" formControlName="email" [(ngModel)]="registerData.email" />
+          <label *ngIf="mailValid" class="text-danger">Please provide a valid email address</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Password</label>
+        <div class="col-sm-4">
+          <input type="password" name="password" class="form-control" formControlName="password" [(ngModel)]="registerData.password" />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-7">
+          <button class="btn btn-primary" type="submit">Register</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

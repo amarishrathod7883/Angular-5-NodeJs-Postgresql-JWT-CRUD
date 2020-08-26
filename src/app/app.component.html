@@ -1,0 +1,37 @@
+<div>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" routerLink="products">Product Demo</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li *ngIf="auth.loggedIn" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          <a routerLink="products">Products</a>
+        </li>
+        <li *ngIf="auth.loggedIn" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          <a routerLink="products/add/new">Add Product</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="!auth.loggedIn" routerLinkActive="active">
+          <a routerLink="register">
+            <span class="glyphicon glyphicon-user"></span> Sign Up
+          </a>
+        </li>
+        <li *ngIf="!auth.loggedIn" routerLinkActive="active">
+          <a routerLink="login">
+            <span class="glyphicon glyphicon-log-in"></span> Login
+          </a>
+        </li>
+        <li *ngIf="auth.loggedIn" routerLinkActive="active">
+          <a (click)="logout()" style="cursor:pointer;">
+            <span class="glyphicon glyphicon-log-out"></span> Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

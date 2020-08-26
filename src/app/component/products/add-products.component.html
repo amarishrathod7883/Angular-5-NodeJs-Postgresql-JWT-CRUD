@@ -1,0 +1,60 @@
+<div class="panel panel-success">
+  <div class="panel-heading">Add Product</div>
+  <div class="panel-body">
+    <form [formGroup]="rForm" (ngSubmit)="addProducts(rForm.value)" class="form-horizontal">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Product Name</label>
+        <div class="col-sm-6">
+          <input type="text" ngModel="{{getProduct.product_name}}" formControlName="product_name" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Product Category</label>
+        <div class="col-sm-6">
+          <select class="form-control select2" formControlName="category_id" ngModel="{{getProduct.category_id}}">
+        <option value="">Select Product Category</option>
+        <option *ngFor='let getCategory_new of getCategory' value="{{getCategory_new.id}}">
+          {{getCategory_new.category_name}}
+        </option>
+      </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Description</label>
+        <div class="col-sm-6">
+          <textarea ngModel="{{getProduct.description}}" formControlName="description" class="form-control"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Price</label>
+        <div class="col-sm-6">
+          <input type="text" ngModel="{{getProduct.price}}" formControlName="price" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-group" *ngIf="getProduct.id">
+        <label class="col-sm-3 control-label">Image</label>
+        <div class="col-sm-6">
+          <input type="file" class="form-control" id="product_image" formControlName="product_image">
+          <input type="hidden" class="form-control" id="product_image_old" formControlName="product_image_old" ngModel={{getProduct.product_image}}>
+        </div>
+      </div>
+      <div class="form-group" *ngIf="!getProduct.id">
+        <label class="col-sm-3 control-label">Image</label>
+        <div class="col-sm-6">
+          <input type="file" class="form-control" formControlName="product_image" id="product_image">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button class="btn btn-danger" style="margin:0px 10px" routerLink="/products">Back</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
